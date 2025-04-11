@@ -1,6 +1,6 @@
 {
   "name": "@rtw_np/mui-pro-components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "homepage": "https://github.com/readytowork-org/mui-pro-components#readme",
   "bugs": {
@@ -16,7 +16,7 @@
   "scripts": {
     "watch": "tsc --watch",
     "build": "tsc",
-    "prepare": "yarn run build"
+    "prepare": "npm run build"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
