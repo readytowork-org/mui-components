@@ -1,0 +1,46 @@
+{
+  "name": "@rtw_np/mui-pro-components",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/readytowork-org/mui-pro-components#readme",
+  "bugs": {
+    "url": "https://github.com/readytowork-org/mui-pro-components/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/readytowork-org/mui-pro-components.git"
+  },
+  "license": "",
+  "author": "",
+  "type": "commonjs",
+  "scripts": {
+    "watch": "tsc --watch",
+    "build": "tsc",
+    "prepare": "yarn run build"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^7.0.1",
+    "@mui/material": "^7.0.1",
+    "@mui/system": "^7.0.1",
+    "@mui/utils": "^7.0.1",
+    "@mui/x-date-pickers": "^7.28.3",
+    "@mui/x-internals": "^7.28.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@typescript-eslint/eslint-plugin": "^8.27.0",
+    "@typescript-eslint/parser": "^8.27.0",
+    "eslint": "^9.22.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.8.2"
+  },
+  "packageManager": "yarn@1.22.22"
+}
