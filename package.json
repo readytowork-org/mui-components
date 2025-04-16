@@ -1,6 +1,6 @@
 {
   "name": "@rtw_np/mui-components",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "homepage": "https://github.com/readytowork-org/mui-components#readme",
   "bugs": {
@@ -41,6 +41,5 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "prettier": "^3.3.3",
     "typescript": "^5.8.2"
-  },
-  "packageManager": "yarn@1.22.22"
+  }
 }
