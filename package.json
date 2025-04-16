@@ -17,7 +17,7 @@
     "watch": "tsc --watch",
     "build": "tsc",
     "copyThemeAug" : "cp ./src/date-picker/themeAugmentation/*.d.ts ./dist/themeAugmentation",
-    "moveDistSrc": "mv ./dist/* ./ && rm -r ./src",
+    "moveDistSrc": "mv ./dist/* ./",
     "prepare": "npm run build && npm run copyThemeAug && npm run moveDistSrc"
   },
   "dependencies": {
