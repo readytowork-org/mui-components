@@ -139,3 +139,9 @@ dist
 .idea
 .idea/**/*
 .idea/**/*.*
+
+*.js
+*.d.ts
+
+!/src/**/*.js
+!/src/**/*.d.ts
