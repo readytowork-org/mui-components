@@ -1,14 +1,14 @@
 {
-  "name": "@rtw_np/mui-pro-components",
+  "name": "@rtw_np/mui-components",
   "version": "1.0.4",
   "description": "",
-  "homepage": "https://github.com/readytowork-org/mui-pro-components#readme",
+  "homepage": "https://github.com/readytowork-org/mui-components#readme",
   "bugs": {
-    "url": "https://github.com/readytowork-org/mui-pro-components/issues"
+    "url": "https://github.com/readytowork-org/mui-components/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/readytowork-org/mui-pro-components.git"
+    "url": "git+https://github.com/readytowork-org/mui-components.git"
   },
   "license": "",
   "author": "",
