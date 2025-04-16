@@ -1,13 +1,7 @@
 node_modules
 dist
+dist/*
 .idea
 .idea/*
-
-*.js
-*.d.ts
-
-!.eslintrc.js
-!/src/**/*.js
-!/src/**/*.d.ts
 
 .DS_Store
