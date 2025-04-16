@@ -3,6 +3,10 @@ dist
 .idea
 .idea/*
 
+*.js
+*.d.ts
+
+!.eslintrc.js
 !/src/**/*.js
 !/src/**/*.d.ts
 
