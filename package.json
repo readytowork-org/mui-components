@@ -15,7 +15,7 @@
   "type": "commonjs",
   "scripts": {
     "watch": "tsc --watch",
-    "build": "tsc",
+    "build": "tsc && cp ./src/date-picker/themeAugmentation/*.d.ts ./themeAugmentation",
     "prepare": "npm run build"
   },
   "dependencies": {
