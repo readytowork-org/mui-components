@@ -16,9 +16,8 @@
   "scripts": {
     "watch": "tsc --watch",
     "build": "tsc",
-    "copyThemeAug" : "cp ./src/date-picker/themeAugmentation/*.d.ts ./dist/themeAugmentation",
-    "moveDistSrc": "mv ./dist/* ./",
-    "prepare": "npm run build && npm run copyThemeAug && npm run moveDistSrc"
+    "copyThemeAug" : "cp ./src/date-picker/themeAugmentation/*.d.ts ./themeAugmentation",
+    "prepare": "npm run build && npm run copyThemeAug"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
