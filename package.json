@@ -1,6 +1,6 @@
 {
   "name": "@rtw_np/mui-components",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "",
   "homepage": "https://github.com/readytowork-org/mui-components#readme",
   "bugs": {
@@ -16,7 +16,7 @@
   "scripts": {
     "watch": "tsc --watch",
     "build": "tsc",
-    "copyThemeAug": "cp ./src/date-picker/themeAugmentation/*.d.ts ./themeAugmentation && cp ./src/date-picker/themeAugmentation/*.json ./themeAugmentation",
+    "copyThemeAug": "cp ./src/date-picker/themeAugmentation/*.d.ts ./date-picker/themeAugmentation && cp ./src/date-picker/themeAugmentation/*.json ./date-picker/themeAugmentation",
     "prepare": "npm run build && npm run copyThemeAug"
   },
   "dependencies": {
