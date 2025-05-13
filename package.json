@@ -1,6 +1,6 @@
 {
   "name": "@rtw_np/mui-components",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "",
   "homepage": "https://github.com/readytowork-org/mui-components#readme",
   "bugs": {
@@ -12,7 +12,7 @@
   },
   "license": "",
   "author": "",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "watch": "tsc --watch",
     "build": "tsc",
