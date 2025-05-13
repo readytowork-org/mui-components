@@ -1,6 +1,6 @@
 {
   "name": "@rtw_np/mui-components",
-  "version": "2.1.7",
+  "version": "2.1.8",
   "description": "",
   "homepage": "https://github.com/readytowork-org/mui-components#readme",
   "bugs": {
@@ -18,7 +18,7 @@
     "build": "tsc",
     "copyDatePickerThemeAug": "cp ./src/date-picker/themeAugmentation/*.d.ts ./date-picker/themeAugmentation && cp ./src/date-picker/themeAugmentation/*.json ./date-picker/themeAugmentation",
     "copyDataGridThemeAug": "cp ./src/x-data-grid/themeAugmentation/*.json ./x-data-grid/themeAugmentation",
-    "prepare": "npm run build && npm run copyDatePickerThemeAug && npm run copyDataGridThemeAug",
+    "prepare": "npm run build && npm run copyDatePickerThemeAug && npm run copyDataGridThemeAug && rm -r src",
     "postinstall": "yarn run prepare"
   },
   "dependencies": {
