@@ -1,6 +1,6 @@
 {
   "name": "@rtw_np/mui-components",
-  "version": "2.1.8",
+  "version": "2.1.9",
   "description": "",
   "homepage": "https://github.com/readytowork-org/mui-components#readme",
   "bugs": {
@@ -18,18 +18,18 @@
     "build": "tsc",
     "copyDatePickerThemeAug": "cp ./src/date-picker/themeAugmentation/*.d.ts ./date-picker/themeAugmentation && cp ./src/date-picker/themeAugmentation/*.json ./date-picker/themeAugmentation",
     "copyDataGridThemeAug": "cp ./src/x-data-grid/themeAugmentation/*.json ./x-data-grid/themeAugmentation",
-    "prepare": "npm run build && npm run copyDatePickerThemeAug && npm run copyDataGridThemeAug && rm -r src",
+    "prepare": "npm run build && npm run copyDatePickerThemeAug && npm run copyDataGridThemeAug",
     "postinstall": "yarn run prepare"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@mui/icons-material": "^7.0.1",
-    "@mui/material": "^7.0.1",
-    "@mui/system": "^7.0.1",
-    "@mui/utils": "^7.0.1",
-    "@mui/x-data-grid": "^8.1.0",
-    "@mui/x-date-pickers": "^7.28.3",
+    "@mui/icons-material": "7.0.2",
+    "@mui/material": "7.0.2",
+    "@mui/system": "7.0.2",
+    "@mui/utils": "7.0.2",
+    "@mui/x-data-grid": "8.1.0",
+    "@mui/x-date-pickers": "7.29.4",
     "@mui/x-internals": "^8.0.0"
   },
   "devDependencies": {
