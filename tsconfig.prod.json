@@ -10,6 +10,5 @@
     "sourceMap": false,
     "moduleResolution": "Node",
     "resolveJsonModule": true
-  },
-  "include": ["src"]
+  }
 }
