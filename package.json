@@ -22,7 +22,7 @@
     "watch": "tsc --watch",
     "build": "tsc -p tsconfig.build.json",
     "generate:exports": "node scripts/generate-exports.js",
-    "build:prod": "tsc -p tsconfig.prod.json && npm run generate:exports",
+    "build:prod": "tsc -p tsconfig.prod.json",
     "copyDatePickerThemeAug": "cp ./src/date-picker/themeAugmentation/*.d.ts ./dist/date-picker/themeAugmentation && cp ./src/date-picker/themeAugmentation/*.json ./dist/date-picker/themeAugmentation",
     "copyDataGridThemeAug": "cp ./src/x-data-grid/themeAugmentation/*.json ./dist/x-data-grid/themeAugmentation",
     "prepare": "npm run build:prod && npm run copyDatePickerThemeAug && npm run copyDataGridThemeAug",

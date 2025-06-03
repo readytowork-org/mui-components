@@ -12,7 +12,9 @@
     "declarationMap": false,
     "types": [],
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "stripInternal": true,
+    "skipLibCheck": false
   },
   "include": ["src/**/*"],
   "exclude": ["**/*.test.ts", "node_modules", "dist"]
