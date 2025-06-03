@@ -9,8 +9,7 @@
     "moduleResolution": "node",
     "declaration": true,
     "forceConsistentCasingInFileNames": true,
-    "rootDir": "./src",
-    "outDir": "./"
+    "rootDir": "./src"
   },
   "exclude": [
     "node_modules",
