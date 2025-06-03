@@ -3,6 +3,4 @@
   "compilerOptions": {
     "outDir": "./",
   },
-  "include": ["src/**/*"],
-  "exclude": ["**/*.test.ts", "node_modules", "dist"]
 }
