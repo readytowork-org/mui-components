@@ -1,46 +1,14 @@
 'use client';
-import * as React from 'react';
-import { useField, useDefaultizedTimeField } from '@mui/x-date-pickers/internals';
-import { useSplitFieldProps } from '@mui/x-date-pickers/hooks';
-import { PickerValidDate } from '@mui/x-date-pickers/models';
+import { useField } from '@mui/x-date-pickers/internals';
 import { UseSingleInputTimeRangeFieldProps } from './SingleInputTimeRangeField.types';
-import { rangeValueManager, getRangeFieldValueManager } from '../internals/utils/valueManagers';
-import { validateTimeRange } from '../validation';
-import { RangeFieldSection, DateRange } from '../models';
+import { useTimeRangeManager } from '../managers';
 
 export const useSingleInputTimeRangeField = <
-  TDate extends PickerValidDate,
   TEnableAccessibleFieldDOMStructure extends boolean,
-  TAllProps extends UseSingleInputTimeRangeFieldProps<TDate, TEnableAccessibleFieldDOMStructure>,
+  TProps extends UseSingleInputTimeRangeFieldProps<TEnableAccessibleFieldDOMStructure>,
 >(
-  inProps: TAllProps,
+  props: TProps,
 ) => {
-  const props = useDefaultizedTimeField<
-    TDate,
-    UseSingleInputTimeRangeFieldProps<TDate, TEnableAccessibleFieldDOMStructure>,
-    TAllProps
-  >(inProps);
-
-  const { forwardedProps, internalProps } = useSplitFieldProps(props, 'time');
-
-  const fieldValueManager = React.useMemo(
-    () => getRangeFieldValueManager<TDate>({ dateSeparator: internalProps.dateSeparator }),
-    [internalProps.dateSeparator],
-  );
-
-  return useField<
-    DateRange<TDate>,
-    TDate,
-    RangeFieldSection,
-    TEnableAccessibleFieldDOMStructure,
-    typeof forwardedProps,
-    typeof internalProps
-  >({
-    forwardedProps,
-    internalProps,
-    valueManager: rangeValueManager,
-    fieldValueManager,
-    validator: validateTimeRange,
-    valueType: 'time',
-  });
+  const manager = useTimeRangeManager(props);
+  return useField({ manager, props });
 };

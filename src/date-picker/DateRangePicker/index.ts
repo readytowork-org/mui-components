@@ -1,18 +1,19 @@
 export { DateRangePicker } from './DateRangePicker';
 export type {
-    DateRangePickerProps,
-    DateRangePickerSlots,
-    DateRangePickerSlotProps,
+  DateRangePickerProps,
+  DateRangePickerSlots,
+  DateRangePickerSlotProps,
+  DateRangePickerFieldProps,
 } from './DateRangePicker.types';
 
 export { DateRangePickerToolbar } from './DateRangePickerToolbar';
 export type { DateRangePickerToolbarProps } from './DateRangePickerToolbar';
 
 export {
-    getDateRangePickerToolbarUtilityClass,
-    dateRangePickerToolbarClasses,
+  getDateRangePickerToolbarUtilityClass,
+  dateRangePickerToolbarClasses,
 } from './dateRangePickerToolbarClasses';
 export type {
-    DateRangePickerToolbarClasses,
-    DateRangePickerToolbarClassKey,
+  DateRangePickerToolbarClasses,
+  DateRangePickerToolbarClassKey,
 } from './dateRangePickerToolbarClasses';

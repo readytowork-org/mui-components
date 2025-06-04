@@ -1,13 +1,26 @@
 {
   "compilerOptions": {
-    "target": "esnext",
     "module": "esnext",
-    "jsx": "react-jsx",
+    "target": "es2022",
+    "jsx": "preserve",
+    "moduleResolution": "bundler",
+    "noUnusedLocals": false,
+    "allowJs": true,
+    "emitDeclarationOnly": true,
+    "allowImportingTsExtensions": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "strict": true,
-    "moduleResolution": "node",
     "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "es2020"
+    ],
+    "types": [
+      "react"
+    ]
   },
   "include": [
     "./src"

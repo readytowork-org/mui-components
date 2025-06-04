@@ -1,28 +1,25 @@
-"use client";
-import * as React from "react";
-import PropTypes from "prop-types";
-import { PickerViewRendererLookup } from "@mui/x-date-pickers/internals";
-import { extractValidationProps } from "@mui/x-date-pickers/validation";
-import { PickerValidDate } from "@mui/x-date-pickers/models";
-import resolveComponentProps from "@mui/utils/resolveComponentProps";
-import { refType } from "@mui/utils";
-import { rangeValueManager } from "../internals/utils/valueManagers";
-import { DesktopDateRangePickerProps } from "./DesktopDateRangePicker.types";
-import { useDateRangePickerDefaultizedProps } from "../DateRangePicker/shared";
-import { renderDateRangeViewCalendar } from "../dateRangeViewRenderers";
-import { MultiInputDateRangeField } from "../MultiInputDateRangeField";
-import { useDesktopRangePicker } from "../internals/hooks/useDesktopRangePicker";
-import { validateDateRange } from "../validation";
-import { DateRange } from "../models";
+'use client';
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import {
+  PickerViewRendererLookup,
+  useUtils,
+  PickerRangeValue,
+} from '@mui/x-date-pickers/internals';
+import { extractValidationProps } from '@mui/x-date-pickers/validation';
+import { PickerOwnerState } from '@mui/x-date-pickers/models';
+import resolveComponentProps from '@mui/utils/resolveComponentProps';
+import refType from '@mui/utils/refType';
+import { rangeValueManager } from '../internals/utils/valueManagers';
+import { DesktopDateRangePickerProps } from './DesktopDateRangePicker.types';
+import { useDateRangePickerDefaultizedProps } from '../DateRangePicker/shared';
+import { renderDateRangeViewCalendar } from '../dateRangeViewRenderers';
+import { SingleInputDateRangeField } from '../SingleInputDateRangeField';
+import { useDesktopRangePicker } from '../internals/hooks/useDesktopRangePicker';
+import { validateDateRange } from '../validation';
 
-type DesktopDateRangePickerComponent = (<
-  TDate extends PickerValidDate,
-  TEnableAccessibleFieldDOMStructure extends boolean = false,
->(
-  props: DesktopDateRangePickerProps<
-    TDate,
-    TEnableAccessibleFieldDOMStructure
-  > &
+type DesktopDateRangePickerComponent = (<TEnableAccessibleFieldDOMStructure extends boolean = true>(
+  props: DesktopDateRangePickerProps<TEnableAccessibleFieldDOMStructure> &
     React.RefAttributes<HTMLDivElement>,
 ) => React.JSX.Element) & { propTypes?: any };
 
@@ -37,47 +34,41 @@ type DesktopDateRangePickerComponent = (<
  * - [DesktopDateRangePicker API](https://mui.com/x/api/date-pickers/desktop-date-range-picker/)
  */
 const DesktopDateRangePicker = React.forwardRef(function DesktopDateRangePicker<
-  TDate extends PickerValidDate,
-  TEnableAccessibleFieldDOMStructure extends boolean = false,
+  TEnableAccessibleFieldDOMStructure extends boolean = true,
 >(
-  inProps: DesktopDateRangePickerProps<
-    TDate,
-    TEnableAccessibleFieldDOMStructure
-  >,
+  inProps: DesktopDateRangePickerProps<TEnableAccessibleFieldDOMStructure>,
   ref: React.Ref<HTMLDivElement>,
 ) {
+  const utils = useUtils();
+
   // Props with the default values common to all date time pickers
   const defaultizedProps = useDateRangePickerDefaultizedProps<
-    TDate,
-    DesktopDateRangePickerProps<TDate, TEnableAccessibleFieldDOMStructure>
-  >(inProps, "MuiDesktopDateRangePicker");
+    DesktopDateRangePickerProps<TEnableAccessibleFieldDOMStructure>
+  >(inProps, 'MuiDesktopDateRangePicker');
 
-  const viewRenderers: PickerViewRendererLookup<
-    DateRange<TDate>,
-    "day",
-    any,
-    {}
-  > = {
+  const viewRenderers: PickerViewRendererLookup<PickerRangeValue, any, any> = {
     day: renderDateRangeViewCalendar,
     ...defaultizedProps.viewRenderers,
   };
 
   const props = {
     ...defaultizedProps,
+    closeOnSelect: defaultizedProps.closeOnSelect ?? true,
     viewRenderers,
+    // TODO: Replace with resolveDateFormat() once we support month and year views
+    format: defaultizedProps.format ?? utils.formats.keyboardDate,
     calendars: defaultizedProps.calendars ?? 2,
-    views: ["day"] as const,
-    openTo: "day" as const,
+    views: ['day'] as const,
+    openTo: 'day' as const,
     slots: {
-      field: MultiInputDateRangeField,
+      field: SingleInputDateRangeField,
       ...defaultizedProps.slots,
     },
     slotProps: {
       ...defaultizedProps.slotProps,
-      field: (ownerState: any) => ({
+      field: (ownerState: PickerOwnerState) => ({
         ...resolveComponentProps(defaultizedProps.slotProps?.field, ownerState),
         ...extractValidationProps(defaultizedProps),
-        ref,
       }),
       toolbar: {
         hidden: true,
@@ -87,15 +78,16 @@ const DesktopDateRangePicker = React.forwardRef(function DesktopDateRangePicker<
   };
 
   const { renderPicker } = useDesktopRangePicker<
-    TDate,
-    "day",
+    'day',
     TEnableAccessibleFieldDOMStructure,
     typeof props
   >({
+    ref,
     props,
     valueManager: rangeValueManager,
-    valueType: "date",
+    valueType: 'date',
     validator: validateDateRange,
+    steps: null,
   });
 
   return renderPicker();
@@ -120,8 +112,8 @@ DesktopDateRangePicker.propTypes = {
   calendars: PropTypes.oneOf([1, 2, 3]),
   className: PropTypes.string,
   /**
-   * If `true`, the popover or modal will close after submitting the full date.
-   * @default `true` for desktop, `false` for mobile (based on the chosen wrapper and `desktopModeMediaQuery` prop).
+   * If `true`, the Picker will close after submitting the full date.
+   * @default true
    */
   closeOnSelect: PropTypes.bool,
   /**
@@ -131,9 +123,9 @@ DesktopDateRangePicker.propTypes = {
   currentMonthCalendarPosition: PropTypes.oneOf([1, 2, 3]),
   /**
    * Formats the day of week displayed in the calendar header.
-   * @param {TDate} date The date of the day of week provided by the adapter.
+   * @param {PickerValidDate} date The date of the day of week provided by the adapter.
    * @returns {string} The name to display.
-   * @default (date: TDate) => adapter.format(date, 'weekdayShort').charAt(0).toUpperCase()
+   * @default (date: PickerValidDate) => adapter.format(date, 'weekdayShort').charAt(0).toUpperCase()
    */
   dayOfWeekFormatter: PropTypes.func,
   /**
@@ -141,7 +133,7 @@ DesktopDateRangePicker.propTypes = {
    * Used when the component is not controlled.
    * @default 'start'
    */
-  defaultRangePosition: PropTypes.oneOf(["end", "start"]),
+  defaultRangePosition: PropTypes.oneOf(['end', 'start']),
   /**
    * The default value.
    * Used when the component is not controlled.
@@ -153,7 +145,8 @@ DesktopDateRangePicker.propTypes = {
    */
   disableAutoMonthSwitching: PropTypes.bool,
   /**
-   * If `true`, the picker and text field are disabled.
+   * If `true`, the component is disabled.
+   * When disabled, the value cannot be changed and no interaction is possible.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -173,7 +166,8 @@ DesktopDateRangePicker.propTypes = {
    */
   disableHighlightToday: PropTypes.bool,
   /**
-   * If `true`, the open picker button will not be rendered (renders only the field).
+   * If `true`, the button to open the Picker will not be rendered (it will only render the field).
+   * @deprecated Use the [field component](https://mui.com/x/react-date-pickers/fields/) instead.
    * @default false
    */
   disableOpenPicker: PropTypes.bool,
@@ -187,7 +181,7 @@ DesktopDateRangePicker.propTypes = {
    */
   displayWeekNumber: PropTypes.bool,
   /**
-   * @default false
+   * @default true
    */
   enableAccessibleFieldDOMStructure: PropTypes.any,
   /**
@@ -205,15 +199,13 @@ DesktopDateRangePicker.propTypes = {
    * Setting `formatDensity` to `"spacious"` will add a space before and after each `/`, `-` and `.` character.
    * @default "dense"
    */
-  formatDensity: PropTypes.oneOf(["dense", "spacious"]),
+  formatDensity: PropTypes.oneOf(['dense', 'spacious']),
   /**
    * Pass a ref to the `input` element.
-   * Ignored if the field has several inputs.
    */
   inputRef: refType,
   /**
    * The label content.
-   * Ignored if the field has several inputs.
    */
   label: PropTypes.node,
   /**
@@ -239,7 +231,6 @@ DesktopDateRangePicker.propTypes = {
   minDate: PropTypes.object,
   /**
    * Name attribute used by the `input` element in the Field.
-   * Ignored if the field has several inputs.
    */
   name: PropTypes.string,
   /**
@@ -275,8 +266,7 @@ DesktopDateRangePicker.propTypes = {
   onError: PropTypes.func,
   /**
    * Callback fired on month change.
-   * @template TDate
-   * @param {TDate} month The new month.
+   * @param {PickerValidDate} month The new month.
    */
   onMonthChange: PropTypes.func,
   /**
@@ -303,7 +293,12 @@ DesktopDateRangePicker.propTypes = {
    * The position in the currently edited date range.
    * Used when the component position is controlled.
    */
-  rangePosition: PropTypes.oneOf(["end", "start"]),
+  rangePosition: PropTypes.oneOf(['end', 'start']),
+  /**
+   * If `true`, the component is read-only.
+   * When read-only, the value cannot be changed but the user can interact with the interface.
+   * @default false
+   */
   readOnly: PropTypes.bool,
   /**
    * If `true`, disable heavy animations.
@@ -332,16 +327,16 @@ DesktopDateRangePicker.propTypes = {
    */
   selectedSections: PropTypes.oneOfType([
     PropTypes.oneOf([
-      "all",
-      "day",
-      "empty",
-      "hours",
-      "meridiem",
-      "minutes",
-      "month",
-      "seconds",
-      "weekDay",
-      "year",
+      'all',
+      'day',
+      'empty',
+      'hours',
+      'meridiem',
+      'minutes',
+      'month',
+      'seconds',
+      'weekDay',
+      'year',
     ]),
     PropTypes.number,
   ]),
@@ -350,8 +345,7 @@ DesktopDateRangePicker.propTypes = {
    *
    * Warning: This function can be called multiple times (for example when rendering date calendar, checking if focus can be moved to a certain date, etc.). Expensive computations can impact performance.
    *
-   * @template TDate
-   * @param {TDate} day The date to test.
+   * @param {PickerValidDate} day The date to test.
    * @param {string} position The date to test, 'start' or 'end'.
    * @returns {boolean} Returns `true` if the date should be disabled.
    */
@@ -381,9 +375,7 @@ DesktopDateRangePicker.propTypes = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool]),
-    ),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),
