@@ -1,15 +1,12 @@
 {
   "compilerOptions": {
+    "target": "esnext",
     "module": "esnext",
-    "target": "es2022",
-    "jsx": "preserve",
-    "moduleResolution": "bundler",
-    "noUnusedLocals": false,
-    "allowJs": true,
-    "emitDeclarationOnly": true,
-    "allowImportingTsExtensions": true,
+    "jsx": "react-jsx",
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "strict": true,
+    "moduleResolution": "node",
     "declaration": true,
     "allowSyntheticDefaultImports": true,
     "lib": [
