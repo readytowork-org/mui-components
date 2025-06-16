@@ -21,7 +21,7 @@
     "copyDatePickerThemeAug": "cp ./src/date-picker/themeAugmentation/*.ts ./date-picker/themeAugmentation && cp ./src/date-picker/themeAugmentation/*.json ./date-picker/themeAugmentation",
     "copyDataGridThemeAug": "cp ./src/x-data-grid/themeAugmentation/*.json ./x-data-grid/themeAugmentation",
     "prepare": "npm run build:prod && npm run copyDatePickerThemeAug && npm run copyDataGridThemeAug",
-    "postinstall": "yarn run prepare && rm -r src"
+    "postinstall": "yarn run prepare"
   },
   "dependencies": {
     "@mui/x-data-grid": "8.5.0",
