@@ -1,6 +1,6 @@
 {
   "name": "@rtw_np/mui-components",
-  "version": "3.0.2",
+  "version": "3.0.4",
   "description": "",
   "homepage": "https://github.com/readytowork-org/mui-components#readme",
   "bugs": {
@@ -20,16 +20,29 @@
     "build:prod": "tsc -p tsconfig.prod.json",
     "copyDatePickerThemeAug": "cp ./src/date-picker/themeAugmentation/*.ts ./date-picker/themeAugmentation && cp ./src/date-picker/themeAugmentation/*.json ./date-picker/themeAugmentation",
     "copyDataGridThemeAug": "cp ./src/x-data-grid/themeAugmentation/*.json ./x-data-grid/themeAugmentation",
-    "prepare": "npm run build:prod && npm run copyDatePickerThemeAug && npm run copyDataGridThemeAug",
-    "postinstall": "npm run prepare"
+    "prepare": "npm run build:prod && npm run copyDatePickerThemeAug && npm run copyDataGridThemeAug"
   },
   "dependencies": {
     "@mui/x-data-grid": "8.5.0",
     "@mui/x-date-pickers": "8.5.0"
   },
+  "peerDependencies": {
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "@mui/material": "^5.15.14 || ^6.0.0 || ^7.0.0",
+    "@mui/system": "^5.15.14 || ^6.0.0 || ^7.0.0",
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
   "devDependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.8",
+    "@mui/system": "^7.3.8",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "@typescript-eslint/eslint-plugin": "^8.33.0",
     "@typescript-eslint/parser": "^8.33.0",
     "eslint": "^9.22.0",
