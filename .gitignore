@@ -1,6 +1,9 @@
 node_modules
 dist
 dist/*
+/components/
+/date-picker/
+/x-data-grid/
 .idea
 .idea/*
 
